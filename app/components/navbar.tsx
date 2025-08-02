@@ -32,7 +32,7 @@ export default function Navbar() {
   const pathname = usePathname()
   const [quote, setQuote] = React.useState('');
   React.useEffect(() => {
-    axios.get('https://api.quotable.io/random')
+    axios.get('api.quotable.io/random')
       .then((res) => setQuote(res.data.content))
       .catch((err) => console.error(err));
   }, []);
