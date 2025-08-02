@@ -33,7 +33,7 @@ export default function Navbar() {
   const [quote, setQuote] = React.useState('');
   React.useEffect(() => {
     axios.get('https://api.adviceslip.com/advice')
-      .then((res) => setQuote(res.data.advice))
+      .then((res) => setQuote(res.data.slip.advice))
       .catch((err) => console.error(err));
   }, []);
 
