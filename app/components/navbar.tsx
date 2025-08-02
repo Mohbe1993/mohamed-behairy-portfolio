@@ -32,8 +32,8 @@ export default function Navbar() {
   const pathname = usePathname()
   const [quote, setQuote] = React.useState('');
   React.useEffect(() => {
-    axios.get('api.quotable.io/random')
-      .then((res) => setQuote(res.data.content))
+    axios.get('https://api.adviceslip.com/advice')
+      .then((res) => setQuote(res.data.advice))
       .catch((err) => console.error(err));
   }, []);
 
