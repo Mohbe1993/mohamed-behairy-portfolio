@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-    title: "Contacts",
-    description: "Contact Me",
+    title: "About",
+    description: "About Me",
 };
 
 
@@ -30,7 +30,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('/imgs/contact-us-background-eps-vector-600nw-2491405611.webp')] bg-cover bg-center `}
             >
                 {children}
             </body>
