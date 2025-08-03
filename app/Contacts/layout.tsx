@@ -28,12 +28,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('/imgs/contact-us-background-eps-vector-600nw-2491405611.webp')] bg-cover bg-center `}
             >
                 {children}
             </body>
-        </html>
+       
     );
 }

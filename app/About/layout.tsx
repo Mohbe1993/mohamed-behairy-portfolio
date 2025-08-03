@@ -28,12 +28,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-                {children}
-            </body>
-        </html>
+
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen lg:h-1 bg-[url('/imgs/IMG_20250102_190105.jpg')] bg-cover bg-center bg-no-repeat`}
+        >
+
+            {children}
+        </body>
+
     );
 }
