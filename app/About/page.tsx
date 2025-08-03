@@ -2,7 +2,7 @@ import { Card, CardActionArea, CardContent, CardMedia, Container, Typography } f
 
 function About() {
     return (
-        <div className={`w-full bg-[url('/imgs/IMG_20250102_190105.jpg')] bg-cover bg-center lg:bg-[center_75%] bg-no-repeat `}>
+        <div className={`w-full bg-[url('/imgs/IMG_20250102_190105.jpg')] bg-cover bg-center lg:bg-[center_75%] bg-no-repeat h-fit `}>
 
             <Container sx={{
                 display: "flex", alignItems: 'center', justifyContent: "flex-start", height: {
