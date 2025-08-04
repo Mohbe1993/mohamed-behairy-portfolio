@@ -6,6 +6,7 @@ function About() {
 
             <Container sx={{
                 display: "flex", alignItems: 'center', justifyContent: "flex-start", height: {
+
                     xs: 'calc(100vh - 3.5rem)',
                     md: 'calc(100vh - 4.5rem)',
                     lg: 'calc(100vh - 4.3rem)',
