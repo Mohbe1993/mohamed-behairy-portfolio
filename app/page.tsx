@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <body className={`w-[100vw] bg-[url('/imgs/shutterstock-1665254809.webp')] bg-cover bg-center  bg-no-repeat `}>
       <Container sx={{
         height: {
           xs: 'calc(100vh - 3.5rem)',
@@ -22,7 +21,7 @@ export default function Home() {
       }}>
         <News />
       </Container>
-    </body>
+    
 
 
 

@@ -1,95 +1,143 @@
-
 'use client'
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
+
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Container, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material'
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-type news = {
-  urlToImage: string | null;
-  title: string | null;
-  description: string | null;
-  url: string | null;
+type WeatherData = {
+  temp: number | null;
+  disc: string;
+  hum: number | null;
 };
 
+const City = {
+  London: {
+    img: '/imgs/download.png',
+    lat: '44.34',
+    lon: '10.99'
+  },
+  Cairo: {
+    img: "/imgs/eg.png",
+    lat: '30.033333',
+    lon: '31.233334'
+  },
+  Dubai: {
+    img: "/imgs/ae.png",
+    lat: '25.276987',
+    lon: '55.296249'
+  },
+};
 
 function News() {
+  const [cityName, setCityName] = React.useState('London');
+  const cityData = City[cityName as keyof typeof City];
+  const [buttonDisplay, setButtonDisplay] = React.useState(true);
 
-  const [counter, setCounter] = useState(0)
+  const [temp, setTemp] = React.useState<WeatherData>({
+    temp: null,
+    disc: "",
+    hum: null,
+  });
 
-  const [news, setNews] = useState<news[] | null>(null);
-  useEffect(() => {
-    axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=de8b4e9b337b434f8856144b5b2d6e8e')
-      .then((res) => setNews(res.data.articles))
-      .catch((err) => console.error(err));
-  }, [counter]);
-  if (!news) return null;
+  const handleChange = (event: SelectChangeEvent) => {
+    setCityName(event.target.value);
+    setButtonDisplay(true);
+  };
+
+  React.useEffect(() => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${cityData.lat}&lon=${cityData.lon}&appid=e0a8e2026213ace48fbd3f3e0c3d76c3&units=metric`
+      )
+      .then(function (response) {
+        const resTemp = Math.round(response.data.main.temp);
+        const resHum = response.data.main.humidity;
+        const resDisc = response.data.weather[0].description;
+        setTemp({
+          temp: resTemp,
+          disc: resDisc,
+          hum: resHum,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [cityData]);
+
   return (
-
-
-    <Box sx={{
-      bgcolor: '#cfe8fc', height: {
+    <Container className='flex items-center justify-center' sx={{
+      height: {
         xs: 'calc(100vh - 3.5rem)',
         md: 'calc(100vh - 4.5rem)',
         lg: 'calc(100vh - 4.3rem)',
-
       },
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: 'center',
-      backgroundColor: "none",
-
     }}>
-
       <Card sx={{
-        maxWidth: {
-          xs: '90%',
-          md: '80%',
-          lg: '70%',
+        maxWidth: '90vw', height: {
+          xs: 'calc(100vh - 18rem)',
+          md: 'calc(100vh - 15rem)',
+          lg: 'calc(100vh - 4.3rem)',
         }
       }}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
-            image={`${news[counter].urlToImage}`}
-            alt="green iguana"
+            sx={{
+              maxWidth: '90vw', height: {
+                xs: 'calc(100vh - 45rem)',
+                md: 'calc(100vh - 40rem)',
+                lg: 'calc(100vh - 25rem)',
+              }
+            }}
+            image={cityData.img}
+            alt={cityName}
           />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
-              {news[counter].title}
+            <Typography gutterBottom variant="h5" component="div">
+              Today&apos;s weather in {cityName}
             </Typography>
-            <Typography variant="h5" sx={{ color: 'text.secondary' }}>
-              {news[counter].description}
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              it is generally a good idea to check the weather forecast before leaving your home, especially if you&apos;re planning to be outdoors for an extended period or if the weather is known to be changeable
             </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {news[counter].url && (
-                <Typography
-                  variant="h6"
-                  component="a"
-                  href={news[counter].url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ color: 'inherit', textDecoration: 'underline' }}
-                >
-                  View more
-                </Typography>
-              )}
-              <Button variant="contained" endIcon={<ArrowForwardIosIcon />} onClick={() => {
-
-                setCounter(counter + 1)
-              }}>
-                Next
-              </Button></Box>
           </CardContent>
         </CardActionArea>
+        <CardActions>
+          <FormControl required sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-required-label">Select City</InputLabel>
+            <Select
+              labelId="demo-simple-select-required-label"
+              id="selectV"
+              value={cityName}
+              label="Select City"
+              onChange={handleChange}
+            >
+              <MenuItem value={'London'}>London</MenuItem>
+              <MenuItem value={'Cairo'}>Cairo</MenuItem>
+              <MenuItem value={'Dubai'}>Dubai</MenuItem>
+            </Select>
+          </FormControl>
+        </CardActions>
+        <CardActions>
+          <Button variant="contained" color="success" sx={{ display: buttonDisplay ? 'block' : 'none' }} onClick={() => {
+            setButtonDisplay(false)
+          }}>
+            Show temperature
+          </Button>
+        </CardActions>
+        <CardContent sx={{ height: '100%', display: buttonDisplay ? 'none' : 'block' }}>
+          <Typography variant="h5" component="div">
+            {`Temp. now: ${temp.temp}°C`}
+          </Typography>
+          <Typography variant="h5" component="div">
+            {`Humidity: ${temp.hum} %`}
+          </Typography>
+          <Typography variant="h5" color="text.secondary">
+            {`Description: ${temp.disc}`}
+          </Typography>
+        </CardContent>
       </Card>
-    </Box>
-
-
+    </Container>
   )
 }
 
-export default News
+export default News;
