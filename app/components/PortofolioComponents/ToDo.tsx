@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Button, Card, TextField, Typography } from '@mui/material'
+import { Box, Button, Card, Container, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import ToDoItem from './ToDoItem';
@@ -31,7 +31,9 @@ function ToDo() {
     };
 
     return (
+
         <Card sx={{
+            marginTop: '1rem',
             maxWidth: '90vw',
             height: {
                 xs: 'calc(100vh - 10rem)',
@@ -51,7 +53,12 @@ function ToDo() {
                         xs: '80vw',
                         md: '80vw',
                         lg: '60vw',
+                    }, height: {
+                        xs: 'calc(100vh - 10rem)',
+                        md: 'calc(100vh - 10rem)',
+                        lg: 'calc(100vh - 5rem)',
                     },
+
                     display: 'flex',
                     alignItems: "center",
                     flexDirection: "column",
@@ -98,7 +105,12 @@ function ToDo() {
                     />
                 ))}
             </Box>
+
+
         </Card>
+
+
+
     );
 }
 
