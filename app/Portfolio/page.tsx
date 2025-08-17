@@ -2,6 +2,8 @@ import { Container } from '@mui/material'
 import React from 'react'
 import ToDo from '../components/PortofolioComponents/ToDo'
 import TictacTo from '../components/ticTacTo/TictacTo'
+import Posts from '../ui/components/posts/postsHome'
+import News from '../components/News'
 
 
 
@@ -15,8 +17,10 @@ function Portfolio() {
         paddingBottom: '1rem',
 
       }}>
+        <News />
         <ToDo />
         <TictacTo />
+        
 
 
 

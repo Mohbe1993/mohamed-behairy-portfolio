@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`w-[100vw] bg-[url('/imgs/shutterstock-1665254809.webp')] bg-cover bg-center  bg-no-repeat  overflow-x-hidden`}>
+            <body className={`w-[100vw] bg-[url('/imgs/shutterstock-1665254809.webp')] g-cover bg-center bg-fixed   overflow-x-hidden`}>
 
                 <Navbar />
                 {children}
