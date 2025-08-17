@@ -42,7 +42,7 @@ function ToDoItem({ title, onDelete }: ToDoItemProps) {
     };
 
     return (
-        <>
+        <div className='mb-1'>
             <Typography variant="h5">
                 {title}
             </Typography>
@@ -104,7 +104,7 @@ function ToDoItem({ title, onDelete }: ToDoItemProps) {
                     <Button onClick={handleCloseAgree}>Agree</Button>
                 </DialogActions>
             </Dialog>
-        </>
+        </div>
     );
 }
 

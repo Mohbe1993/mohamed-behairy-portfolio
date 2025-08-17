@@ -3,6 +3,8 @@ import React from 'react'
 import ToDo from '../components/PortofolioComponents/ToDo'
 import TictacTo from '../components/ticTacTo/TictacTo'
 
+
+
 function Portfolio() {
   return (
     <div className="w-[100vw] h-fit bg-[url('/imgs/work.jpeg')] bg-cover bg-center bg-fixed ">
@@ -15,6 +17,7 @@ function Portfolio() {
       }}>
         <ToDo />
         <TictacTo />
+
 
 
       </Container>

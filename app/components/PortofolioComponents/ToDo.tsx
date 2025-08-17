@@ -35,6 +35,7 @@ function ToDo() {
         <Card sx={{
             marginTop: '1rem',
             maxWidth: '90vw',
+
             height: {
                 xs: 'calc(100vh - 10rem)',
                 md: 'calc(100vh - 10rem)',
@@ -48,6 +49,7 @@ function ToDo() {
         }}>
             <Box
                 sx={{
+
                     m: 1,
                     width: {
                         xs: '80vw',
@@ -62,7 +64,8 @@ function ToDo() {
                     display: 'flex',
                     alignItems: "center",
                     flexDirection: "column",
-                    gap: '1rem'
+                    gap: '1rem',
+                   
                 }}
             >
                 <Typography variant="h5" sx={{ background: 'rgb(85, 85, 171)', width: "90%", textAlign: 'center', color: "white" }}>
@@ -85,27 +88,27 @@ function ToDo() {
                 >
                     Add
                 </Button>
-            </Box>
 
-            <Box
-                sx={{
-                    m: 1,
-                    width: "75%",
-                    display: 'flex',
-                    flexDirection: "column",
-                    gap: '1rem',
-                }}
-            >
-                {todos.map(todo => (
-                    <ToDoItem
-                        key={todo.id}
-                        title={todo.title}
-                        setTitle={(newTitle) => handleUpdateTodo(todo.id, newTitle)}
-                        onDelete={() => handleDeleteTodo(todo.id)}
-                    />
-                ))}
-            </Box>
+                <Box
+                    sx={{
+                        m: 1,
+                        width: "75%",
+                        display: 'flex',
+                        flexDirection: "column",
+                        gap: '1rem',
+                    }}
+                >
+                    {todos.map(todo => (
+                        <ToDoItem
+                            key={todo.id}
+                            title={todo.title}
+                            setTitle={(newTitle) => handleUpdateTodo(todo.id, newTitle)}
+                            onDelete={() => handleDeleteTodo(todo.id)}
 
+                        />
+                    ))}
+                </Box>
+            </Box>
 
         </Card>
 
